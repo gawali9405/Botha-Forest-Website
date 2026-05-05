@@ -1,0 +1,146 @@
+/* ===== DROPDOWN CONTAINER ===== */
+.dropdown {
+    position: relative;
+    cursor: pointer;
+    color: #eaffea;
+    font-weight: 500;
+}
+
+/* title */
+.dropdown span {
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.dropdown span:hover {
+    color: #4ade80;
+}
+
+
+/* ===== ARROW ===== */
+.arrow {
+    margin-left: 5px;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+/* rotate arrow when open (mobile) */
+.dropdown:hover .arrow {
+    transform: rotate(180deg);
+}
+
+
+/* ===== DROPDOWN MENU ===== */
+.dropdown-menu {
+    position: absolute;
+    top: 120%;
+    left: 0;
+
+    min-width: 180px;
+
+    background: rgba(11, 47, 35, 0.95);
+    backdrop-filter: blur(10px);
+
+    border-radius: 0.6rem;
+    padding: 0.5rem 0;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+
+    /* hidden state */
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+/* show dropdown */
+.dropdown-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+
+/* ===== LINKS ===== */
+.dropdown-menu a {
+    display: block;
+    padding: 0.6rem 1rem;
+    color: #eaffea;
+    text-decoration: none;
+    font-size: 0.95rem;
+
+    transition: all 0.25s ease;
+}
+
+/* hover effect */
+.dropdown-menu a:hover {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+    padding-left: 1.2rem;
+}
+
+
+/* ===== DESKTOP HOVER SUPPORT ===== */
+/* ensures smooth hover area (prevents flicker) */
+.dropdown::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+}
+
+
+/* ===== MOBILE STYLES ===== */
+@media (max-width: 768px) {
+
+    .dropdown {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown span {
+        display: block;
+        padding: 0.5rem 0;
+    }
+
+    /* mobile dropdown becomes inline */
+    .dropdown-menu {
+        position: static;
+        background: transparent;
+        backdrop-filter: none;
+        box-shadow: none;
+        border-radius: 0;
+
+        padding: 0;
+
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+
+        display: none;
+    }
+
+    /* toggle show */
+    .dropdown-menu.show {
+        display: block;
+    }
+
+    .dropdown-menu a {
+        padding: 0.5rem 0;
+        font-size: 1rem;
+    }
+
+    .dropdown-menu a:hover {
+        background: transparent;
+        padding-left: 0;
+    }
+
+    /* arrow rotate on open (mobile click) */
+    .dropdown-menu.show ~ span .arrow {
+        transform: rotate(180deg);
+    }
+}
